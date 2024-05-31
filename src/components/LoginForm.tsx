@@ -58,9 +58,13 @@ const LoginForm = () => {
         toast.error(`${value[0]} for ${key}`);
       });
 
-      setDisabled(false);
       setLoading(false);
       return;
+    }
+
+    if (error) {
+      toast.success("Not authorized!");
+      return setLoading(false);
     }
 
     setPassword("");
