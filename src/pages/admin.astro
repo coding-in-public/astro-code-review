@@ -49,6 +49,8 @@ const reviews = await db.select().from(Review);
         event.preventDefault();
 
         await actions.logout.safe({});
+
+        window.location.href = "/";
       });
     </script>
   </section>
