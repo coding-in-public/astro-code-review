@@ -16,7 +16,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     context.locals.user = null;
     context.locals.session = null;
 
-    if (pathname !== "/login" && context.request.method === "GET") {
+    if (pathname === "/admin") {
       return context.redirect("/login");
     }
   }
@@ -33,8 +33,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
     }
     context.locals.session = session;
     context.locals.user = user;
-    if (pathname === "/create" || pathname === "/login") {
-      return context.redirect("/");
+    if (pathname === "/login") {
+      return context.redirect("/admin");
     }
   }
   return next();

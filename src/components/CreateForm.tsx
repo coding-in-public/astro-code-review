@@ -67,6 +67,8 @@ const CreateForm = () => {
     setUsername("");
     setLoading(false);
     toast.success("Thanks for creating an account!");
+    // redirect to /admin
+    window.location.href = "/admin";
   };
 
   return (

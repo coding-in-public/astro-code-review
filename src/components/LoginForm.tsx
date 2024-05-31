@@ -67,6 +67,7 @@ const LoginForm = () => {
     setUsername("");
     setLoading(false);
     toast.success("Logged in!");
+    window.location.href = "/admin";
   };
 
   return (
