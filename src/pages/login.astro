@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 // image imports
 import courseIcon from "@/assets/astro-course-icon.png";
 
-import CreateForm from "@/components/CreateForm";
+import LoginForm from "@/components/LoginForm";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -24,7 +24,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     />
 
     <div class="fade-in shift-up">
-      <CreateForm client:load />
+      <LoginForm client:load />
     </div>
   </section>
 </BaseLayout>
