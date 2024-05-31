@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import sanitize from "sanitize-html";
 import toast, { Toaster } from "react-hot-toast";
 import Globe from "@/assets/Globe";
@@ -15,11 +15,34 @@ const SignupForm = () => {
   const demoRef = useRef<HTMLLabelElement>(null);
   const repoRef = useRef<HTMLLabelElement>(null);
 
+  const doesInputSeemValid = (input: string) => {
+    if (input.length < 4) {
+      return true;
+    }
+    if (!input.startsWith("https://")) {
+      return false;
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    if (demoUrl.length < 4 || repo.length < 4) {
+      return;
+    }
+
+    const isRepoProbsValid = doesInputSeemValid(repo);
+    const isDemoUrlProbsValid = doesInputSeemValid(repo);
+    if (isRepoProbsValid && isDemoUrlProbsValid) {
+      setDisabled(false);
+    }
+  }, [repo, demoUrl]);
+
   const handleBlur = (
     state: string,
     ref: React.RefObject<HTMLLabelElement>
   ) => {
-    if (state.length > 4 && !state.startsWith("https://")) {
+    const probsValid = doesInputSeemValid(state);
+    if (!probsValid) {
       ref.current?.classList.add("border-astro-accent-pink");
       ref.current?.classList.remove("border-astro-500");
       toast.error("Provide the full URL (e.g., https://…)");
@@ -87,7 +110,7 @@ const SignupForm = () => {
         </label>
         <button
           type="submit"
-          className="relative w-full rounded-md border border-transparent bg-gradient-to-r from-astro-accent-red to-astro-accent-pink hover:to-astro-accent-dark-pink hover:transition-all px-4 py-3 leading-none shadow-sm [text-shadow:none] disabled:cursor-not-allowed disabled:border-astro-500 disabled:from-astro-800 disabled:to-astro-800 disabled:text-astro-400 flex items-center justify-center gap-2"
+          className="relative w-full rounded-md border border-transparent font-bold text-astro-800 bg-gradient-to-r from-astro-accent-red to-astro-accent-pink hover:to-astro-accent-dark-pink focus:outline-none focus-visible:ring-2 ring-black hover:transition-all px-4 py-3 leading-none shadow-sm [text-shadow:none] disabled:cursor-not-allowed disabled:border-astro-500 disabled:from-astro-800 disabled:to-astro-800 disabled:text-astro-400 flex items-center justify-center gap-2"
           disabled={disabled}
         >
           {loading ? (
