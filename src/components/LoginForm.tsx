@@ -63,7 +63,7 @@ const LoginForm = () => {
     }
 
     if (error) {
-      toast.success("Not authorized!");
+      toast.error("Nice try! Not authorized!");
       return setLoading(false);
     }
 
