@@ -1,9 +1,12 @@
 ---
 import { getImage } from "astro:assets";
 
+import Footer from "@/components/Footer.astro";
+import Stars from "@/components/Stars.astro";
 import noiseImg from "../assets/noise.webp";
-import Noise from "../components/Noise.astro";
 import LineStreak from "../components/LineStreak.astro";
+import Noise from "../components/Noise.astro";
+import { Toaster } from "react-hot-toast";
 
 const noiseBkg = await getImage({ src: noiseImg, format: "avif" });
 
@@ -31,9 +34,33 @@ const { title, description } = Astro.props;
     <meta name="theme-color" content="#23262D" />
   </head>
   <body class="max-w-[2000px] mx-auto">
+    <Toaster
+      client:load
+      toastOptions={{
+        className: "",
+        style: {
+          border: "1px solid #445060",
+          minWidth: "250px",
+          background: "#23262D",
+          color: "#eceff2",
+          boxShadow:
+            "-1px 4px 8px hsl(0 67.9% 52.4% / .2), 2px 3px 7px hsl(300 100% 63.5% / .1)",
+        },
+        success: {
+          iconTheme: {
+            primary: "#F340C6",
+            secondary: "#eceff2",
+          },
+        },
+      }}
+    />
     <main
       class="min-h-screen bg-astro-800 text-astro-200 relative z-0 overflow-hidden"
     >
+      <div class="opacity-50 md:opacity-90">
+        <Stars classes="-top-4 -left-16 shift-right fade-in hidden md:block" />
+        <Stars classes="-bottom-16 shift-left fade-in -right-20" />
+      </div>
       <Noise />
       <LineStreak classes="top-12 rotate-12 right-0" />
       <LineStreak
@@ -45,12 +72,11 @@ const { title, description } = Astro.props;
         class="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none -z-20"
       >
       </div>
-      <div class="grid min-h-screen">
+      <div class="grid min-h-screen grid-rows-1fr-auto">
         <div class="grid gap-6 sm:gap-8">
           <slot />
         </div>
-
-        <!-- <Footer /> -->
+        <Footer />
       </div>
       <Noise
         showGrid={false}

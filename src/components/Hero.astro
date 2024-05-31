@@ -2,24 +2,18 @@
 import { Image } from "astro:assets";
 
 // image imports
-import cipHead from "@/assets/cip-icon.png";
 import courseIcon from "@/assets/astro-course-icon.png";
 
 // components
-import SignupForm from "@/components/SignupForm";
 import Heading from "@/components/Heading.astro";
-import Banner from "@/components/Banner.astro";
-import Stars from "./Stars.astro";
+import SignupForm from "@/components/SignupForm";
+import Note from "./Note.astro";
 ---
 
 <section
-  class="grid place-items-center gap-6 sm:gap-8 text-center relative"
+  class="grid place-items-center content-center gap-4 sm:gap-6 text-center px-4"
   aria-label="Submit website for review form"
 >
-  <div class="opacity-50 md:opacity-80">
-    <Stars classes="-top-4 -left-16 shift-right fade-in hidden md:block" />
-    <Stars classes="-bottom-16 shift-left fade-in -right-20" />
-  </div>
   <Image
     src={courseIcon}
     alt="Astro icon for course"
@@ -28,26 +22,14 @@ import Stars from "./Stars.astro";
   <Heading tagType="h1" size="lg" classes="fade-in shift-up">
     Astro Code Review
   </Heading>
-  <SignupForm client:load />
-  <p class="fade-in shift-up">Submit your Astro website for review!</p>
-  <Banner classes="fade-in shift-up py-4">
-    <div
-      class="fade-in shift-up container flex gap-1 items-center justify-center text-dropshadow"
-    >
-      <Image
-        src={cipHead}
-        alt="Coding in Public head for course"
-        width={160}
-        class="w-24 sm:w-40"
-      />
-      <div class="grid gap-1 text-left">
-        <p class="text-sm">by Chris Pennington</p>
-        <a
-          class="text-astro-400 text-xs no-underline focus:outline-transparent focus-visible:ring-4 ring-astro-accent-dark-pink ring-offset-2 ring-offset-astro-900 rounded"
-          href="https://youtube.com/@codinginpublic"
-          ><span class="underline">Coding in Public</span> on YouTube</a
-        >
-      </div>
-    </div>
-  </Banner>
+  <p class="fade-in shift-up max-w-prose text-balance">
+    Submit your Astro website for review! Only accepting published sites with
+    public repos.
+  </p>
+  <div class="fade-in shift-up">
+    <SignupForm client:load />
+  </div>
+  <Note class="fade-in shift-up max-w-prose text-balance mb-10"
+    >Submitting does not gaurantee a code review.</Note
+  >
 </section>

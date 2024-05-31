@@ -1,0 +1,16 @@
+---
+import { twMerge } from "tailwind-merge";
+
+const { ...rest } = Astro.props;
+---
+
+<div
+  class:list={[
+    twMerge(
+      "text-left max-w-[495px] bg-astro-800/60 px-4 py-3 border-2 border-astro-accent-dark-pink/30 mt-4 mb-2 mx-4",
+      rest.class
+    ),
+  ]}
+>
+  <slot />
+</div>

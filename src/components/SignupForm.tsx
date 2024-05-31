@@ -4,7 +4,7 @@ import Person from "@/assets/Person";
 import Spinner from "@/assets/Spinner";
 import { actions, isInputError } from "astro:actions";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import sanitize from "sanitize-html";
 
 const SignupForm = () => {
@@ -142,6 +142,7 @@ const SignupForm = () => {
             required
             className="bg-transparent placeholder-astro-300 focus:outline-none peer order-1"
             name="name"
+            autoFocus
             value={name}
             onChange={(e) => setName(sanitize(e.target.value))}
             onBlur={handleNameBlur}
@@ -200,25 +201,6 @@ const SignupForm = () => {
           )}
         </button>
       </form>
-      <Toaster
-        toastOptions={{
-          className: "",
-          style: {
-            border: "1px solid #445060",
-            minWidth: "250px",
-            background: "#23262D",
-            color: "#eceff2",
-            boxShadow:
-              "-1px 4px 8px hsl(0 67.9% 52.4% / .2), 2px 3px 7px hsl(300 100% 63.5% / .1)",
-          },
-          success: {
-            iconTheme: {
-              primary: "#F340C6",
-              secondary: "#eceff2",
-            },
-          },
-        }}
-      />
     </>
   );
 };

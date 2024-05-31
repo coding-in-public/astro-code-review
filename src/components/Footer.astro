@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import Banner from "./Banner.astro";
+import cipHead from "@/assets/cip-icon.png";
+---
+
+<footer>
+  <Banner classes="fade-in shift-up py-4">
+    <div
+      class="fade-in shift-up container flex gap-1 items-center justify-center text-dropshadow"
+    >
+      <Image
+        src={cipHead}
+        alt="Coding in Public head for course"
+        width={160}
+        class="w-24 sm:w-40"
+      />
+      <div class="grid gap-1 text-left">
+        <p class="text-sm">by Chris Pennington</p>
+        <a
+          class="text-astro-400 text-xs no-underline focus:outline-transparent focus-visible:ring-4 ring-astro-accent-dark-pink ring-offset-2 ring-offset-astro-900 rounded"
+          href="https://youtube.com/@codinginpublic"
+          ><span class="underline">Coding in Public</span> on YouTube</a
+        >
+      </div>
+    </div>
+  </Banner>
+</footer>
