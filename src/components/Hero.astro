@@ -9,19 +9,27 @@ import courseIcon from "@/assets/astro-course-icon.png";
 import SignupForm from "@/components/SignupForm";
 import Heading from "@/components/Heading.astro";
 import Banner from "@/components/Banner.astro";
+import Stars from "./Stars.astro";
 ---
 
 <section
   class="grid place-items-center gap-6 sm:gap-8 text-center relative"
   aria-label="Submit website for review form"
 >
+  <div class="opacity-50 md:opacity-80">
+    <Stars classes="-top-4 -left-16 shift-right fade-in hidden md:block" />
+    <Stars classes="-bottom-16 shift-left fade-in -right-20" />
+  </div>
   <Image
     src={courseIcon}
     alt="Astro icon for course"
     class="fade-in shift-up w-28 sm:w-40"
   />
-  <Heading tagType="h1" size="lg"> Astro Code Review </Heading>
-  <SignupForm />
+  <Heading tagType="h1" size="lg" classes="fade-in shift-up ">
+    Astro Code Review
+  </Heading>
+  <SignupForm client:load />
+  <p class="fade-in shift-up">Submit your Astro website for review!</p>
   <Banner classes="fade-in shift-up py-4">
     <div
       class="fade-in shift-up container flex gap-1 items-center justify-center text-dropshadow"
