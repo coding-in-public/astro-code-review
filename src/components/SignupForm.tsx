@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
-import sanitize from "sanitize-html";
-import toast, { Toaster } from "react-hot-toast";
-import Globe from "@/assets/Globe";
 import Github from "@/assets/Github";
+import Globe from "@/assets/Globe";
+import Person from "@/assets/Person";
 import Spinner from "@/assets/Spinner";
 import { actions, isInputError } from "astro:actions";
-import Person from "@/assets/Person";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import sanitize from "sanitize-html";
 
 const SignupForm = () => {
   const [name, setName] = useState("");
@@ -83,7 +83,7 @@ const SignupForm = () => {
       return;
     }
 
-    const { data, error } = await actions.review.safe(formData);
+    const { error } = await actions.review.safe(formData);
 
     if (error && isInputError(error)) {
       console.error(error);
