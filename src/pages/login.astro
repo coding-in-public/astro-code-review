@@ -1,0 +1,30 @@
+---
+// components
+import { Image } from "astro:assets";
+
+// image imports
+import courseIcon from "@/assets/astro-course-icon.png";
+
+import CreateForm from "@/components/CreateForm";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Astro Code Review"
+  description="Submit your Astro site for a live code review."
+>
+  <section
+    class="grid place-items-center content-center gap-4 sm:gap-6 text-center px-4"
+    aria-label="Submit website for review form"
+  >
+    <Image
+      src={courseIcon}
+      alt="Astro icon for course"
+      class="fade-in shift-up w-28 sm:w-40"
+    />
+
+    <div class="fade-in shift-up">
+      <CreateForm client:load />
+    </div>
+  </section>
+</BaseLayout>
