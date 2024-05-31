@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+
+// image imports
+import cipHead from "@/assets/cip-icon.png";
+import courseIcon from "@/assets/astro-course-icon.png";
+
+// components
+import SignupForm from "@/components/SignupForm";
+import Heading from "@/components/Heading.astro";
+import Banner from "@/components/Banner.astro";
+---
+
+<section
+  class="grid place-items-center gap-6 sm:gap-8 text-center relative"
+  aria-label="Submit website for review form"
+>
+  <Image
+    src={courseIcon}
+    alt="Astro icon for course"
+    class="fade-in shift-up w-28 sm:w-40"
+  />
+  <Heading tagType="h1" size="lg"> Astro Code Review </Heading>
+  <SignupForm />
+  <Banner classes="fade-in shift-up py-4">
+    <div
+      class="fade-in shift-up container flex gap-1 items-center justify-center text-dropshadow"
+    >
+      <Image
+        src={cipHead}
+        alt="Coding in Public head for course"
+        width={160}
+        class="w-24 sm:w-40"
+      />
+      <div class="grid gap-1 text-left">
+        <p class="text-sm">by Chris Pennington</p>
+        <a
+          class="text-astro-400 text-xs no-underline focus:outline-transparent focus-visible:ring-4 ring-astro-accent-dark-pink ring-offset-2 ring-offset-astro-900 rounded"
+          href="https://youtube.com/@codinginpublic"
+          ><span class="underline">Coding in Public</span> on YouTube</a
+        >
+      </div>
+    </div>
+  </Banner>
+</section>
