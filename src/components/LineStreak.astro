@@ -1,0 +1,53 @@
+---
+type Props = {
+  classes?: string;
+  direction?: "rtl" | "ltr";
+  delayInSeconds?: number;
+  durationInSeconds?: number;
+}
+
+const { classes, direction, delayInSeconds, durationInSeconds } = Astro.props;
+
+---
+
+
+<svg width="781" height="4" viewBox="0 0 781 4" fill="none" xmlns="http://www.w3.org/2000/svg" class:list={["absolute", classes, {"scale-x-[-1]": direction === "ltr"}]}>
+<path d="M781 2L-3.36766e-06 2" stroke="url(#paint0_linear_1_181)" stroke-opacity="0.22" stroke-width="4" style={`animation-delay: ${delayInSeconds || 1}s; animation-duration: ${durationInSeconds || 8}s`} pathLength="1" />
+<defs>
+<linearGradient id="paint0_linear_1_181" x1="390.5" y1="2" x2="390.5" y2="1" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D83333"/>
+<stop offset="1" stop-color="#F941FF"/>
+</linearGradient>
+</defs>
+</svg>
+
+
+<style>
+path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawLine infinite ease-in-out forwards;
+}
+
+@keyframes drawLine {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  50% {
+    stroke-dashoffset: 1;
+  }
+  60% {
+    stroke-dashoffset: 0;
+  }
+  70%,
+  100% {
+    stroke-dashoffset: -1;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  path {
+    animation: none; /* Disable animation if user prefers reduced motion */
+  }
+}
+</style>

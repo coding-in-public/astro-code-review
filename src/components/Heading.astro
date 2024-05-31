@@ -1,0 +1,47 @@
+---
+import { cva } from "class-variance-authority";
+import { twMerge } from "tailwind-merge";
+
+const tagOptions = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
+
+const buttonVariants = cva(
+  "font-semibold leading-[1.1] text-balance text-dropshadow text-astro-100 tracking-wide",
+  {
+    variants: {
+      variant: {
+        default: "",
+        gradient:
+          "bg-gradient-to-r from-astro-accent-red from-30% via-astro-accent-pink to-astro-accent-pink to-90% bg-clip-text text-transparent [text-shadow:none] w-fit",
+        pink: "text-astro-accent-dark-pink",
+      },
+      size: {
+        sm: "text-md",
+        default: "text-lg",
+        lg: "text-3xl",
+        none: "",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+type Props = {
+  tagType: (typeof tagOptions)[number];
+  size?: "sm" | "default" | "lg";
+  variant?: "default" | "gradient" | "pink";
+  classes?: string;
+};
+
+const { tagType, classes, size, variant, ...rest } = Astro.props;
+const Tag = tagType;
+---
+
+<Tag
+  class:list={[twMerge(buttonVariants({ size, variant }), classes)]}
+  {...rest}
+>
+  <slot />
+</Tag>

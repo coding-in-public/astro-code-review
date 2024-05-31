@@ -1,0 +1,20 @@
+---
+import { Image } from "astro:assets";
+import courseIcon from "../assets/astro-course-icon.png";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SignupForm from "../components/SignupForm";
+import Heading from "../components/Heading.astro";
+---
+
+<BaseLayout
+  title="Astro Code Review"
+  description="Submit your Astro site for a live code review."
+>
+  <Image
+    src={courseIcon}
+    alt="Astro icon for course"
+    class="fade-in shift-up w-28 sm:w-40"
+  />
+  <Heading tagType="h1" size="lg"> Astro Code Review </Heading>
+  <SignupForm />
+</BaseLayout>

@@ -1,0 +1,80 @@
+---
+import { getImage } from "astro:assets";
+
+import noiseImg from "../assets/noise.webp";
+import Noise from "../components/Noise.astro";
+import LineStreak from "../components/LineStreak.astro";
+
+const noiseBkg = await getImage({ src: noiseImg, format: "avif" });
+
+type Props = {
+  title: string;
+  description: string;
+};
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en" style="color-scheme: dark;">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="max-w-[2000px] mx-auto">
+    <main
+      class="min-h-screen bg-astro-800 text-astro-200 relative z-0 overflow-hidden"
+    >
+      <Noise />
+      <LineStreak classes="top-12 rotate-12 right-0" />
+      <LineStreak
+        classes="bottom-4 rotate-[135deg] -left-20"
+        delayInSeconds={4}
+      />
+      <div
+        style={`background-image: url(${noiseBkg.src});`}
+        class="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none -z-20"
+      >
+      </div>
+      <div class="grid min-h-screen">
+        <div
+          class="grid place-items-center place-content-center gap-6 sm:gap-8 text-center relative"
+        >
+          <slot />
+        </div>
+
+        <!-- <Footer /> -->
+      </div>
+      <Noise
+        showGrid={false}
+        showMiddleDarkArea={false}
+        purpleClasses="left-auto -right-1/4 -bottom-1/2 top-auto w-screen"
+        redClasses="top-auto -bottom-1/2 right-1/4 left-auto w-screen"
+      />
+    </main>
+    <script>
+      const observables = document.querySelectorAll(
+        ".fade-in, .shift-up, .shift-left, .shift-right"
+      );
+      const observer = new IntersectionObserver(
+        function (entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.5,
+        }
+      );
+      observables.forEach((observable) => {
+        observer.observe(observable);
+      });
+    </script>
+  </body>
+</html>
