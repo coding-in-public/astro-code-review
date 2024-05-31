@@ -48,9 +48,7 @@ const reviews = await db.select().from(Review);
       form?.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        await actions.logout();
-
-        window.location.href = "/";
+        await actions.logout.safe({});
       });
     </script>
   </section>
