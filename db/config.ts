@@ -6,6 +6,8 @@ const Review = defineTable({
     name: column.text(),
     demoUrl: column.text(),
     repoUrl: column.text(),
+    featured: column.boolean({ default: false }),
+    isReviewed: column.boolean({ default: false }),
   },
 });
 

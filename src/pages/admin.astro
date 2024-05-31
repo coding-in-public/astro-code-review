@@ -1,6 +1,11 @@
 ---
 // components
+import Heading from "@/components/Heading.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { db } from "astro:db";
+import { Review } from "astro:db";
+
+const reviews = await db.select().from(Review);
 ---
 
 <BaseLayout
@@ -11,7 +16,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     class="grid place-items-center content-center gap-4 sm:gap-6 text-center px-4"
     aria-label="Admin Page"
   >
-    <div class="fade-in shift-up">Admin</div>
+    <div class="fade-in shift-up">
+      <Heading tagType="h1" size="lg" classes="fade-in shift-up">
+        Admin Page
+      </Heading>
+
+      {
+        reviews.map((item) => (
+          <ul>
+            <li>{item.name}</li>
+            <li>
+              <a href={item.demoUrl}>{item.demoUrl}</a>
+            </li>
+            <li>
+              <a href={item.repoUrl}>{item.repoUrl}</a>
+            </li>
+            <li>Is featured: {item.featured}</li>
+            <li>Is reviewed: {item.isReviewed}</li>
+          </ul>
+        ))
+      }
+    </div>
     <form id="signout">
       <button>Sign Out</button>
     </form>
