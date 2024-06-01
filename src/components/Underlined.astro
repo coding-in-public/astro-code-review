@@ -1,0 +1,16 @@
+---
+import { twMerge } from "tailwind-merge";
+type Props = {
+  class?: string;
+};
+const { class: classes } = Astro.props;
+---
+
+<span
+  class={twMerge(
+    "relative before:absolute before:bottom-[.15em] before:-z-10 before:bg-gradient-to-r before:from-astro-accent-red before:to-astro-accent-pink before:h-[4px] before:w-full before:rounded-full before:blur-sm",
+    classes
+  )}
+>
+  <slot />
+</span>

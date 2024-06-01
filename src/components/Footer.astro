@@ -2,12 +2,13 @@
 import { Image } from "astro:assets";
 import Banner from "./Banner.astro";
 import cipHead from "@/assets/cip-icon.png";
+import Underlined from "./Underlined.astro";
 ---
 
-<footer>
-  <Banner classes="fade-in shift-up py-4">
+<footer class="grid gap-2">
+  <Banner classes="py-4">
     <div
-      class="fade-in shift-up container flex gap-1 items-center justify-center text-dropshadow"
+      class="container flex gap-1 items-center justify-center text-dropshadow"
     >
       <Image
         src={cipHead}
@@ -25,4 +26,15 @@ import cipHead from "@/assets/cip-icon.png";
       </div>
     </div>
   </Banner>
+  <div class="text-center mx-auto pb-4 pt-2">
+    <p>
+      Want to learn more about Astro? <Underlined>
+        <a
+          href="https://learnastro.dev?utm_source=astro-code-review"
+          class="text-xs no-underline focus:outline-transparent focus-visible:ring-4 ring-astro-accent-dark-pink ring-offset-2 ring-offset-astro-900 rounded"
+          >Check out my Astro course</a
+        >
+      </Underlined>.
+    </p>
+  </div>
 </footer>
