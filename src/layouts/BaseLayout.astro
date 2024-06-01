@@ -32,6 +32,30 @@ const { title, description } = Astro.props;
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="msapplication-TileColor" content="#23262D" />
     <meta name="theme-color" content="#23262D" />
+    <!-- open graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:image" content={`${Astro.site}social-image.jpg?v=1`} />
+    <meta
+      property="og:image:secure_url"
+      content={`${Astro.site}social-image.jpg?v=1`}
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- twitter -->
+    <meta name="twitter:site:id" content="@cpenned" />
+    <meta name="twitter:creator" content="@cpenned" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${Astro.site}social-image.jpg?v=1`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content="Astro Course by Chris Pennington" />
   </head>
   <body class="max-w-[2000px] mx-auto">
     <Toaster
