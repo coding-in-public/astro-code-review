@@ -16,7 +16,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     context.locals.user = null;
     context.locals.session = null;
 
-    if (pathname === "/admin") {
+    if (pathname.includes("admin")) {
       return context.redirect("/login");
     }
   }

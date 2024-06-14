@@ -133,24 +133,6 @@ const SignupForm = () => {
         <input name="honeypot" type="text" className="hidden" />
         <label
           className="flex items-center gap-2 rounded-md border border-astro-500 bg-astro-900 pr-4 pl-3 py-2 shadow-sm focus-within:bg-astro-800 focus-within:shadow-lg"
-          ref={nameRef}
-        >
-          <span className="sr-only">Your Name</span>
-          <input
-            type="text"
-            placeholder="Your Name…"
-            required
-            className="bg-transparent placeholder-astro-300 focus:outline-none peer order-1"
-            name="name"
-            autoFocus
-            value={name}
-            onChange={(e) => setName(sanitize(e.target.value))}
-            onBlur={handleNameBlur}
-          />
-          <Person className="size-5 text-astro-500 peer-focus:text-astro-200 pointer-events-none" />
-        </label>
-        <label
-          className="flex items-center gap-2 rounded-md border border-astro-500 bg-astro-900 pr-4 pl-3 py-2 shadow-sm focus-within:bg-astro-800 focus-within:shadow-lg"
           ref={demoRef}
         >
           <span className="sr-only">Demo Site…</span>

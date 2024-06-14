@@ -1,0 +1,31 @@
+---
+type TReview = {
+  name: string;
+  demoUrl: string;
+  repoUrl: string;
+  featured: boolean | string;
+  isReviewed: boolean | string;
+};
+
+type Props = {
+  item: TReview;
+};
+
+const { item } = Astro.props;
+---
+
+<div class="grid gap-1 grid-cols-5 w-screen max-w-2xl items-center mx-auto">
+  {
+    Object.values(item).map((i, idx, arr) => (
+      <p
+        class:list={[
+          "bg-astro-900/80 py-2 w-full border-b-2 border-astro-accent-dark-pink grid place-items-center text-center",
+          { "rounded-tl-md": idx === 0 },
+          { "rounded-tr-md": idx === arr.length - 1 },
+        ]}
+      >
+        {i}
+      </p>
+    ))
+  }
+</div>

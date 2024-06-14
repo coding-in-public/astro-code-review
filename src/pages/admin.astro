@@ -1,11 +1,23 @@
 ---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// db
+import { db, Review } from "astro:db";
+
+// actions
+import { actions, getActionProps } from "astro:actions";
+
 // components
 import Heading from "@/components/Heading.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { db } from "astro:db";
-import { Review } from "astro:db";
+import Button from "@/components/ui/Button.astro";
+import ReviewHeaderRow from "@/components/ReviewHeaderRow.astro";
+import ReviewRow from "@/components/ReviewRow";
 
 const reviews = await db.select().from(Review);
+
+if (Astro.request.method === "POST") {
+  Astro.redirect("/");
+}
 ---
 
 <BaseLayout
@@ -21,37 +33,22 @@ const reviews = await db.select().from(Review);
         Admin Page
       </Heading>
 
-      {
-        reviews.map((item) => (
-          <ul>
-            <li>{item.name}</li>
-            <li>
-              <a href={item.demoUrl}>{item.demoUrl}</a>
-            </li>
-            <li>
-              <a href={item.repoUrl}>{item.repoUrl}</a>
-            </li>
-            <li>Is featured: {item.featured}</li>
-            <li>Is reviewed: {item.isReviewed}</li>
-          </ul>
-        ))
-      }
+      <div class="grid gap-2">
+        <ReviewHeaderRow
+          item={{
+            name: "Name",
+            demoUrl: "Demo Link",
+            repoUrl: "Repo Link",
+            featured: "Featured",
+            isReviewed: "Reviewed",
+          }}
+        />
+        {reviews.map((item) => <ReviewRow client:load item={item} />)}
+      </div>
     </div>
-    <form id="signout">
-      <button>Sign Out</button>
+    <form>
+      <input {...getActionProps(actions.logout)} />
+      <Button type="submit">Logout</Button>
     </form>
-
-    <script>
-      import { actions } from "astro:actions";
-
-      const form = document.getElementById("signout") as HTMLFormElement;
-      form?.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        await actions.logout.safe({});
-
-        window.location.href = "/";
-      });
-    </script>
   </section>
 </BaseLayout>
